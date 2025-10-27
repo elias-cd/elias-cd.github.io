@@ -93,6 +93,43 @@
             border: 1px solid var(--color-border);
         }
     </style>
+	
+	<div style="margin:10px 0;">
+  <button id="btn-guardar-odoo">Guardar en Odoo</button>
+</div>
+
+<div style="margin:10px 0;">
+  <button id="btn-guardar-odoo">Guardar en Odoo</button>
+</div>
+
+<script>
+  const ODOO_BASE = 'https://formmto.odoo.com';
+  const ACTION_ID = '1761';
+  const MODEL = 'x_mantenimiento_checkl'; // ajusta si tu nombre técnico difiere
+
+  function getAETab() {
+    const h = (location.hash || '').replace('#','').toUpperCase();
+    return ['AE101','AE102','AE103'].includes(h) ? h : 'AE101';
+  }
+  function getToday() {
+    return new Date().toISOString().slice(0,10);
+  }
+  function buildUrl(ae, dateStr) {
+    const ctx = encodeURIComponent(JSON.stringify({ default_ae: ae, default_fecha: dateStr }));
+    // Forma estándar
+    return `${ODOO_BASE}/web#action=${ACTION_ID}&model=${MODEL}&view_type=form&context=${ctx}`;
+    // Alternativa compatible en tu instancia:
+    // return `${ODOO_BASE}/odoo/action-${ACTION_ID}/new?context=${ctx}`;
+  }
+
+  document.getElementById('btn-guardar-odoo').addEventListener('click', () => {
+    const dateInput = document.querySelector('#fecha_mant, input[type="date"]');
+    const dateStr = (dateInput && dateInput.value) ? dateInput.value : getToday();
+    const url = buildUrl(getAETab(), dateStr);
+    window.open(url, '_blank');
+  });
+</script>
+
 </head>
 <body>
   <div class="container">
@@ -739,6 +776,45 @@ document.addEventListener('DOMContentLoaded', function(){
 
   const initial = (location.hash || '#ae101').slice(1);
   activate(initial);
+});
+</script>
+<script>
+function serializeForm(){
+  const data = {};
+  document.querySelectorAll('input[type="checkbox"][data-key], input[type="text"][data-key], textarea[data-key], select[data-key]')
+    .forEach(el => {
+      const k = el.dataset.key;
+      data[k] = (el.type === 'checkbox') ? (el.checked ? 1 : 0) : el.value || '';
+    });
+  return btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+}
+function deserializeForm(encoded){
+  try{
+    const data = JSON.parse(decodeURIComponent(escape(atob(encoded))));
+    Object.entries(data).forEach(([k,v]) => {
+      const el = document.querySelector('[data-key="'+k+'"]');
+      if(!el) return;
+      if(el.type === 'checkbox'){ el.checked = v === 1 || v === '1'; }
+      else { el.value = v; }
+    });
+  }catch(e){ /* hash inválido */ }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  // Cargar si viene en hash ?state=...
+  const m = location.hash.match(/state=([^&]+)/);
+  if(m) deserializeForm(m[1]);
+
+  const gen = document.getElementById('gen-link');
+  const out = document.getElementById('link-out');
+  if(gen && out){
+    gen.addEventListener('click', () => {
+      const payload = serializeForm();
+      const base = location.href.replace(location.hash,'');
+      const url = base + '#state=' + payload;
+      out.value = url;
+      out.select();
+    });
+  }
 });
 </script>
 </body>
