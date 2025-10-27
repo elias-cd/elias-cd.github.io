@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Mantenimiento</title>
     <style>
+	/* Tabs */
+.tabs { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+.tab-btn { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background:#f9f9f9; cursor:pointer; }
+.tab-btn.active { background:#1FB8CD; color:#fff; border-color:#1FB8CD; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
         :root {
             --color-primary: #1FB8CD;
             --color-text: #1f2121;
@@ -61,7 +67,16 @@
   <div class="container">
     <h1>Reporte de Mantenimiento</h1>
     <p class="subtitle">Plantilla base para checklist embebido</p>
-<!-- Checklist embebido -->
+	<div class="tabs" id="tabs">
+  <button class="tab-btn active" data-target="#ae101">AE101</button>
+  <button class="tab-btn" data-target="#ae102">AE102</button>
+  <button class="tab-btn" data-target="#ae103">AE103</button>
+</div>
+
+<div id="ae101" class="tab-panel active">
+  <div class="table-wrap">
+    <!-- MUEVE AQUÍ tu tabla existente de AE101 -->
+	<!-- Checklist embebido -->
  <section style="margin-top:24px;">
   <!-- Título general -->
   <div style="text-align:center;margin-bottom:12px;">
@@ -249,5 +264,208 @@
   </div>
 </section>
   </div>
+    <!-- <table> ... </table> -->
+  </div>
+</div>
+
+<div id="ae102" class="tab-panel">
+  <div class="table-wrap">
+    <!-- Pega aquí la tabla de AE102 (puedes copiar la de AE101 y cambiar títulos) -->
+	<!-- Checklist embebido -->
+ <section style="margin-top:24px;">
+  <!-- Título general -->
+  <div style="text-align:center;margin-bottom:12px;">
+    <div style="display:inline-block;border:2px solid #000;padding:6px 12px;border-radius:4px;background:#f7f7f0;">
+      <strong>Mantenimiento Avenida Escazú / 2025.</strong>
+    </div>
+  </div>
+
+  <!-- Sección: Entradas y Salidas -->
+  <div style="border:2px solid #777;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+    <div style="background:#f2f2f2;border-bottom:2px solid #777;padding:6px 10px;text-align:center;font-weight:700;">
+      *Entradas y Salidas* (Entry / Exit)
+    </div>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th style="width:120px;background:#f2f2f2;border:1px solid #000;padding:8px;text-align:left;">AE / 102</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Entry Izquierda</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Entry Derecha</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Entry Motos</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Exit Izquierda</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Exit Derecha</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Exit Motos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Llavín de carcasa.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Sujeción de la carcasa.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Corte e impresión del ticket.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Alimentación de tickets.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">“Entrada” del ticket.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">“Salida” del ticket.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Pantalla LCD.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Intercomunicador.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Lectora de proximidad.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Limpieza interna y externa.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Supresor de picos.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">NEDAP</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"><td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">UPS</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Sección: Mag Head -->
+  <div style="border:2px solid #777;border-radius:6px;overflow:hidden;margin-bottom:20px;">
+    <div style="background:#f2f2f2;border-bottom:2px solid #777;padding:6px 10px;text-align:center;font-weight:700;">
+      *Mag Head*
+    </div>
+
+    <table style="width:100%;border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th style="width:120px;background:#f2f2f2;border:1px solid #000;padding:8px;text-align:left;">AE / 101</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Entry Izquierda</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Entry Derecha</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Entry Motos</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Exit Izquierda</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Exit Derecha</th>
+          <th style="background:#FFD700;border:1px solid #000;padding:8px;">Exit Motos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border:1px solid #000;padding:8px;text-align:left;">Limpieza y revisión.</td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+          <td style="border:1px solid #000;text-align:center;"><input type="checkbox"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Observaciones -->
+  <div style="margin-top:16px;">
+    <label for="obs">Observaciones</label>
+    <textarea id="obs" rows="4" style="width:100%;padding:8px;border:1px solid #ccc;border-radius:6px;"></textarea>
+  </div>
+</section>
+  </div>
+  </div>
+</div>
+
+<div id="ae103" class="tab-panel">
+  <div class="table-wrap">
+    <!-- Pega aquí la tabla de AE103 -->
+  </div>
+</div>
 </body>
 </html>
