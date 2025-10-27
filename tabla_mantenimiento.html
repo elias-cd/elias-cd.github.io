@@ -93,16 +93,44 @@
             border: 1px solid var(--color-border);
         }
     </style>
-	
-	<div style="margin:10px 0;">
-  <button id="btn-guardar-odoo">Guardar en Odoo</button>
-</div>
 
-<<div style="margin:12px 0;">
+<div style="margin:12px 0;">
   <button id="btn-guardar-odoo">Cargar formulario de Odoo</button>
 </div>
 
 <iframe id="odoo-frame" width="100%" height="900" style="border:0;background:#fff;"></iframe>
+
+<script>
+  const ODOO_BASE = 'https://formmto.odoo.com';
+  const ACTION_ID = '1761';
+  const MODEL = 'x_mantenimiento_checkl';  // ajusta si tu modelo técnico es otro
+
+  function getAETab() {
+    const h = (location.hash || '').replace('#','').toUpperCase();
+    return ['AE101','AE102','AE103'].includes(h) ? h : 'AE101';
+  }
+  function getToday() { return new Date().toISOString().slice(0,10); }
+
+  function buildUrl(ae, dateStr) {
+    const ctx = encodeURIComponent(JSON.stringify({
+      default_ae: ae,
+      default_fecha: dateStr
+    }));
+    return `${ODOO_BASE}/web#action=${ACTION_ID}&model=${MODEL}&view_type=form&context=${ctx}`;
+  }
+
+  function loadOdooForm() {
+    const dateInput = document.getElementById('fecha_mant'); // si no existe, usa hoy
+    const dateStr = (dateInput && dateInput.value) ? dateInput.value : getToday();
+    const url = buildUrl(getAETab(), dateStr);
+    document.getElementById('odoo-frame').src = url;
+  }
+
+  document.getElementById('btn-guardar-odoo').addEventListener('click',);
+  window.addEventListener('hashchange',);
+  // Si quieres que cargue automático al abrir la página, descomenta:
+  // loadOdooForm();
+</script>
 
 </head>
 <body>
