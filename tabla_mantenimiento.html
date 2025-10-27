@@ -98,37 +98,11 @@
   <button id="btn-guardar-odoo">Guardar en Odoo</button>
 </div>
 
-<div style="margin:10px 0;">
-  <button id="btn-guardar-odoo">Guardar en Odoo</button>
+<<div style="margin:12px 0;">
+  <button id="btn-guardar-odoo">Cargar formulario de Odoo</button>
 </div>
 
-<script>
-  const ODOO_BASE = 'https://formmto.odoo.com';
-  const ACTION_ID = '1761';
-  const MODEL = 'x_mantenimiento_checkl'; // ajusta si tu nombre técnico difiere
-
-  function getAETab() {
-    const h = (location.hash || '').replace('#','').toUpperCase();
-    return ['AE101','AE102','AE103'].includes(h) ? h : 'AE101';
-  }
-  function getToday() {
-    return new Date().toISOString().slice(0,10);
-  }
-  function buildUrl(ae, dateStr) {
-    const ctx = encodeURIComponent(JSON.stringify({ default_ae: ae, default_fecha: dateStr }));
-    // Forma estándar
-    return `${ODOO_BASE}/web#action=${ACTION_ID}&model=${MODEL}&view_type=form&context=${ctx}`;
-    // Alternativa compatible en tu instancia:
-    // return `${ODOO_BASE}/odoo/action-${ACTION_ID}/new?context=${ctx}`;
-  }
-
-  document.getElementById('btn-guardar-odoo').addEventListener('click', () => {
-    const dateInput = document.querySelector('#fecha_mant, input[type="date"]');
-    const dateStr = (dateInput && dateInput.value) ? dateInput.value : getToday();
-    const url = buildUrl(getAETab(), dateStr);
-    window.open(url, '_blank');
-  });
-</script>
+<iframe id="odoo-frame" width="100%" height="900" style="border:0;background:#fff;"></iframe>
 
 </head>
 <body>
