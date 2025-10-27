@@ -14,15 +14,11 @@
 /* reduce separación entre tabs y panel */
 .tabs { margin-bottom: 8px; }
 
-/* quita margen superior al primer hijo dentro de cada panel */
-.tab-panel > :first-child { margin-top: 0 !important; }
-
 /* neutraliza márgenes verticales grandes que puedan “empujar” la tabla */
 .table-wrap { margin-top: 0 !important; }
 
 /* si usas un bloque título centrado antes de la tabla, normaliza su margen */
 .section-title,
-.section-banner { margin: 8px auto 10px auto !important; }
 .container { max-width: 1400px; margin: 0 auto; background: #fff; }
 .tab-panel { background:#fff; padding: 0; }
 .table-wrap { background:#fff; margin: 0 auto; }
@@ -32,6 +28,17 @@
 .tab-panel > :first-child { margin-top: 0 !important; }
 .section-banner { margin: 8px auto 10px auto !important; }
 .section-header { margin: 0 0 12px 0 !important; }
+
+/* Ancho y estructura uniforme de tablas en todos los paneles */
+.table-wrap { overflow-x: auto; }
+.table-wrap table { width: 100%; min-width: 860px; border-collapse: collapse; }
+
+/* Columnas: ítem flexible + 6 columnas fijas iguales */
+.colgroup-7 col:first-child { width: auto; }
+.colgroup-7 col:not(:first-child) { width: 110px; }
+
+.tab-panel { overflow-x: hidden; }  /* evita scroll fuera de la tabla */
+.section-banner { display:inline-block; max-width:100%; }
         :root {
             --color-primary: #1FB8CD;
             --color-text: #1f2121;
@@ -82,22 +89,6 @@
             padding: 10px 12px;
             border: 1px solid var(--color-border);
         }
-/* Ancho y estructura uniforme de tablas en todos los paneles */
-.table-wrap { overflow-x: auto; }
-.table-wrap table { width: 100%; min-width: 860px; border-collapse: collapse; }
-
-/* Columnas: ítem flexible + 6 columnas fijas iguales */
-.colgroup-7 col:first-child { width: auto; }
-.colgroup-7 col:not(:first-child) { width: 110px; }
-
-/* Márgenes consistentes arriba de cada panel */
-.tab-panel { padding-top: 0; background:#fff; }
-.tab-panel > :first-child { margin-top: 0 !important; }
-
-.tab-panel { overflow-x: hidden; }  /* evita scroll fuera de la tabla */
-.section-banner { display:inline-block; max-width:100%; }
-.table-wrap { overflow-x:auto; }     /* el scroll queda solo en la tabla */
-
     </style>
 </head>
 <body>
@@ -734,6 +725,34 @@ document.addEventListener('DOMContentLoaded', function(){
     const target = document.querySelector(btn.dataset.target);
     if (target) target.classList.add('active');
   }));
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const tabs   = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  function activate(id){
+    // reset
+    tabs.forEach(b => b.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    // set
+    const btn = Array.from(tabs).find(b => b.dataset.target === '#'+id);
+    const panel = document.getElementById(id);
+    if(btn) btn.classList.add('active');
+    if(panel) panel.classList.add('active');
+  }
+
+  // Al hacer clic en una pestaña
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    const id = btn.dataset.target.replace('#','');
+    history.replaceState(null, '', '#'+id);  // actualiza hash
+    activate(id);
+  }));
+
+  // Al cargar la página: usar hash si existe
+  const initial = (location.hash || '#ae101').replace('#','');
+  activate(initial);
 });
 </script>
 </body>
